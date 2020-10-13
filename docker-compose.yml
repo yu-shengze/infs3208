@@ -5,24 +5,25 @@ services:
         image: mariadb:latest
         container_name: mysql
         volumes:
-            - database: /var/lib/mysql
+            - $HOME/website.sql:/docker-entrypoint-initdb.d
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: MyDBRoot123
-            MYSQL_DATABASE: php
-            MYSQL_USER: php
-            MYSQL_PPASSWORD: php
+            MYSQL_DATABASE: website
+            MYSQL_USER: web
+            MYSQL_PPASSWORD: 0dWK9fp%wgFN
         ports:
             - "3306:3306"
         networks:
             - app-network
-    
+
+
     #PHP-FPM
     myphp:
         depends_on: mysql
         dockerfile: dockerfile
         volumes:
-            - $HOME/cca2/src:/var/www/html
+            - $HOME:/var/www/html
         container_name: myphp
         privileged: true
         restart: always
@@ -36,10 +37,10 @@ services:
         depends_on: myphp        
         image: nginx
         volumes:
-            - $HOME/cca2/src:/var/www/html
-            - $HOME/cca2/src/nginx.ini:/etc/nginx/conf.d/default.conf 
-            - $HOME/cca2/src/php-fpm.conf:/etc/php/7.4/fpm/php-fpm.conf
-            - $HOME/cca2/src/www.conf:/etc/php/7.4/fpm/pool.d/www.conf
+            - $HOME:/var/www/html
+            - $HOME/nginx.ini:/etc/nginx/conf.d/default.conf 
+            - $HOME/php-fpm.conf:/etc/php/7.4/fpm/php-fpm.conf
+            - $HOME/www.conf:/etc/php/7.4/fpm/pool.d/www.conf
         privileged: true
         container_name: mynginx
         restart: always
