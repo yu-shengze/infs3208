@@ -42,7 +42,9 @@ services:
 
     #Php
     php:
-        image: php:7.2-fpm
+        build:
+            context: .
+            dockerfile: dockerfile
         volumes:
             - ./sitepages/:/var/www/html/
             - ./phpconf/:/etc/php/7.4/fpm/
