@@ -42,9 +42,9 @@ services:
         image: nginx
         volumes:
             - $HOME/website/src:/var/www/html
-            - $HOME/website/src/nginx.ini:/etc/nginx/conf.d/default.conf 
-            - $HOME/website/src/php-fpm.conf:/etc/php/7.4/fpm/php-fpm.conf
-            - $HOME/website/src/www.conf:/etc/php/7.4/fpm/pool.d/www.conf
+            - $HOME/website/src/default.conf:/etc/nginx/conf.d/
+            - $HOME/website/src/php-fpm.conf:/etc/php/7.4/fpm/
+            - $HOME/website/src/www.conf:/etc/php/7.4/fpm/pool.d/
         privileged: true
         container_name: mynginx
         restart: always
