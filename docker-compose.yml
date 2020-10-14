@@ -20,11 +20,10 @@ services:
 
     #Nginx
     mynginx:
+        image: nginx:latest
         depends_on: 
-            - mysql       
-        build:
-            context: .
-            dockerfile: dockerfile
+            - myphp
+            - mysql
         volumes:
             - ./sitepages/:/var/www/html/
             - ./nginx/:/etc/nginx/conf.d/
@@ -35,6 +34,20 @@ services:
         restart: always
         ports:
             - "80:80"
+        links:
+            - php
+        networks:
+            - app-network
+
+    #Php
+    php:
+        image: php:7-fpm
+        volumes:
+            - ./sitepages/:/var/www/html/
+        container_name: myphp
+        restart: always
+        ports:
+            - "9000:9000"
         networks:
             - app-network
 
