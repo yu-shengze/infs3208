@@ -47,7 +47,6 @@ services:
             dockerfile: dockerfile
         volumes:
             - ./sitepages/:/var/www/html/
-            - ./phpini/:/usr/local/etc/php/
         container_name: myphp
         restart: always
         ports:
