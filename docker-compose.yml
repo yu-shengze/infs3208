@@ -5,7 +5,7 @@ services:
         image: mariadb:latest
         container_name: mysql
         volumes:
-            - $HOME/website/src/website.sql:/docker-entrypoint-initdb.d
+            - $HOME/website/src/website.sql:/docker-entrypoint-initdb.d/website.sql
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: MyDBRoot123
