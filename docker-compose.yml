@@ -4,9 +4,9 @@ services:
     mysql:
         image: mariadb:latest
         container_name: mysql
-        volumes:
-            - database:/var/lib/mysql
+        volumes:            
             - ./sql/:/docker-entrypoint-initdb.d/
+            - database:/var/lib/mysql
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: MyDBRoot123
@@ -53,7 +53,7 @@ services:
             - "9000:9000"
         networks:
             - app-network
-            
+
     #admin for db use
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -67,10 +67,12 @@ services:
         restart: always
         ports:
             - 8081:80
+        networks:
+            - app-network
 
 #Volumes
 volumes: 
-    database: {}
+    database: 
 
 #Network
 networks:
