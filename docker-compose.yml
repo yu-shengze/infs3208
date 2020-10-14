@@ -2,7 +2,9 @@ version: '3'
 services:
     #MariaDB
     mysql:
-        image: mariadb:latest
+        build:
+            context: .
+            dockerfile: dockerfile_mariadb
         container_name: mysql
         volumes:
             - database:/var/lib/mysql
