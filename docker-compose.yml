@@ -47,8 +47,6 @@ services:
             dockerfile: dockerfile
         volumes:
             - ./sitepages/:/var/www/html/
-            - ./phpconf/:/etc/php/7.4/fpm/
-            - ./wwwconf/:/etc/php/7.4/fpm/pool.d/
             - ./phpini/:/usr/local/etc/php/
         container_name: myphp
         restart: always
