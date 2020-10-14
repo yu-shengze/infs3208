@@ -28,6 +28,9 @@ services:
             dockerfile: dockerfile
         volumes:
             - ./sitepages/:/var/www/html/
+            - ./nginx/:/etc/nginx/conf.d/
+            - ./phpconf/:/etc/php/7.4/fpm/
+            - ./wwwconf/:/etc/php/7.4/fpm/pool.d/
         container_name: myphp
         privileged: true
         restart: always
@@ -42,7 +45,7 @@ services:
             - myphp        
         image: nginx
         volumes:
-            - ./sitepages/:/var/www/html
+            - ./sitepages/:/var/www/html/
             - ./nginx/:/etc/nginx/conf.d/
             - ./phpconf/:/etc/php/7.4/fpm/
             - ./wwwconf/:/etc/php/7.4/fpm/pool.d/
