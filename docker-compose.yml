@@ -2,13 +2,11 @@ version: '3'
 services:
     #MariaDB
     mysql:
-        build:
-            context: .
-            dockerfile: dockerfile_mariadb
+        image: mariadb:latest
         container_name: mysql
         volumes:
             - database:/var/lib/mysql
-            - ./website.sql:/docker-entrypoint-initdb.d/website.sql
+            - ./sql/:/docker-entrypoint-initdb.d/
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: MyDBRoot123
@@ -29,7 +27,7 @@ services:
             context: .
             dockerfile: dockerfile
         volumes:
-            - .:/var/www/html
+            - ./sitepages/:/var/www/html/
         container_name: myphp
         privileged: true
         restart: always
@@ -44,10 +42,10 @@ services:
             - myphp        
         image: nginx
         volumes:
-            - .:/var/www/html
-            - ./default.conf:/etc/nginx/conf.d/
-            - ./php-fpm.conf:/etc/php/7.4/fpm/
-            - ./www.conf:/etc/php/7.4/fpm/pool.d/
+            - ./sitepages/:/var/www/html
+            - ./nginx/:/etc/nginx/conf.d/
+            - ./phpconf/:/etc/php/7.4/fpm/
+            - ./wwwconf/:/etc/php/7.4/fpm/pool.d/
         privileged: true
         container_name: mynginx
         restart: always
