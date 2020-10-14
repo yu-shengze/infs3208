@@ -20,8 +20,11 @@ services:
 
     #PHP-FPM
     myphp:
-        depends_on: mysql
-        dockerfile: dockerfile
+        depends_on: 
+            - mysql
+        build:
+            context: .
+            dockerfile: dockerfile
         volumes:
             - $HOME/website/src:/var/www/html
         container_name: myphp
@@ -34,7 +37,8 @@ services:
 
     #Nginx
     mynginx:
-        depends_on: myphp        
+        depends_on: 
+            - myphp        
         image: nginx
         volumes:
             - $HOME/website/src:/var/www/html
