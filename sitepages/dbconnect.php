@@ -1,5 +1,5 @@
 <?php
-$connection = mysqli_connect('127.0.0.1', 'web', '0dWK9fp%wgFN');
+$connection = mysqli_connect('127.0.0.1', 'root', 'MyDBRoot123');
 if (!$connection){
     die("Database Connection Failed" . mysqli_error($connection));
 }
