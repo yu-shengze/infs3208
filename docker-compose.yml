@@ -5,7 +5,8 @@ services:
         image: mariadb:latest
         container_name: mysql
         volumes:
-            - $HOME/website/src/website.sql:/docker-entrypoint-initdb.d/website.sql
+            - database:/var/lib/mysql
+            - ./website.sql:/docker-entrypoint-initdb.d/website.sql
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: MyDBRoot123
@@ -26,7 +27,7 @@ services:
             context: .
             dockerfile: dockerfile
         volumes:
-            - $HOME/website/src:/var/www/html
+            - .:/var/www/html
         container_name: myphp
         privileged: true
         restart: always
@@ -41,10 +42,10 @@ services:
             - myphp        
         image: nginx
         volumes:
-            - $HOME/website/src:/var/www/html
-            - $HOME/website/src/default.conf:/etc/nginx/conf.d/
-            - $HOME/website/src/php-fpm.conf:/etc/php/7.4/fpm/
-            - $HOME/website/src/www.conf:/etc/php/7.4/fpm/pool.d/
+            - .:/var/www/html
+            - ./default.conf:/etc/nginx/conf.d/
+            - ./php-fpm.conf:/etc/php/7.4/fpm/
+            - ./www.conf:/etc/php/7.4/fpm/pool.d/
         privileged: true
         container_name: mynginx
         restart: always
