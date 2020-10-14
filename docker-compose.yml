@@ -18,31 +18,13 @@ services:
         networks:
             - app-network
 
-
-    #PHP-FPM
-    myphp:
-        depends_on: 
-            - mysql
-        build:
-            context: .
-            dockerfile: dockerfile
-        volumes:
-            - ./sitepages/:/var/www/html/
-            - ./phpconf/:/etc/php/7.4/fpm/
-            - ./wwwconf/:/etc/php/7.4/fpm/pool.d/
-        container_name: myphp
-        privileged: true
-        restart: always
-        ports:
-            - "9000:9000"
-        networks:
-            - app-network
-
     #Nginx
     mynginx:
         depends_on: 
-            - myphp        
-        image: nginx
+            - mysql       
+        build:
+            context: .
+            dockerfile: dockerfile
         volumes:
             - ./sitepages/:/var/www/html/
             - ./nginx/:/etc/nginx/conf.d/
