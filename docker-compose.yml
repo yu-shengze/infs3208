@@ -28,7 +28,6 @@ services:
             dockerfile: dockerfile
         volumes:
             - ./sitepages/:/var/www/html/
-            - ./nginx/:/etc/nginx/conf.d/
             - ./phpconf/:/etc/php/7.4/fpm/
             - ./wwwconf/:/etc/php/7.4/fpm/pool.d/
         container_name: myphp
