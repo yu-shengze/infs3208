@@ -22,7 +22,10 @@ services:
     mynginx:
         image: nginx:latest
         depends_on: 
-            - myphp
+            - php
+            - mysql
+        links:
+            - php
             - mysql
         volumes:
             - ./sitepages/:/var/www/html/
@@ -33,17 +36,18 @@ services:
         container_name: mynginx
         restart: always
         ports:
-            - "80:80"
-        links:
-            - php
+            - "80:80"        
         networks:
             - app-network
 
     #Php
     php:
-        image: php:7-fpm
+        image: php:7.2-fpm
         volumes:
             - ./sitepages/:/var/www/html/
+            - ./phpconf/:/etc/php/7.4/fpm/
+            - ./wwwconf/:/etc/php/7.4/fpm/pool.d/
+            - ./phpini/:/usr/local/etc/php/
         container_name: myphp
         restart: always
         ports:
