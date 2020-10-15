@@ -5,6 +5,7 @@ services:
         image: mariadb:latest
         container_name: mysql
         volumes:            
+            - ./sql/:/docker-entrypoint-initdb.d/
             - database:/var/lib/mysql/
         restart: always
         environment:
