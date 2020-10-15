@@ -5,8 +5,6 @@ $ID = intval($_GET['ID']);
 $target = $_GET['target'];
 $_SESSION[$target] =$ID;
 
-echo 'target is '.$target.' value is '.$ID;
-
 $sql = 'SELECT * FROM '.$target.'s WHERE id='.$ID;
 
 try {
