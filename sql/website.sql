@@ -131,8 +131,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `current_step`, `chipset`, `firstName`, `motherboard`, `cpu`) VALUES
-(1, 'fred', 'abc123', 1, '2', 'Fred', 2, 1),
-(2, 'joe', 'abc123', 1, '2', 'Fred', 2, 1);
+(1, 'fred', 'abc123', 1, '2', 'Fred', 2, 1);
 
 --
 -- Indexes for dumped tables
