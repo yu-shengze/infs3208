@@ -40,9 +40,7 @@ services:
 
     #Php
     php:
-        build:
-            context: .
-            dockerfile: dockerfile
+        image: yushengze/infs3208:latest
         volumes:
             - ./sitepages/:/var/www/html/
         container_name: myphp
