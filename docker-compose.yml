@@ -61,6 +61,8 @@ services:
         links:
             - mysql
         environment:
+            MYSQL_USERNAME: root
+            MYSQL_ROOT_PASSWORD: MyDBRoot123
             PMA_HOST: mysql
             PMA_PORT: 3306
             PMA_ARBITRARY: 1
